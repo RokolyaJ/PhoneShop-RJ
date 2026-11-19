@@ -1,3 +1,4 @@
+import os
 from flask import Flask, jsonify, request
 
 from models import db, Phone
@@ -5,8 +6,9 @@ from database import init_db
 
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = (
-    "postgresql+psycopg://phoneshop:phoneshop@postgres:5432/phoneshop"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv(
+    "DATABASE_URL",
+    "sqlite:///phones.db"
 )
 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False

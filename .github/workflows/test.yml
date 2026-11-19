@@ -22,6 +22,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r app/requirements.txt
 
+      - name: Start Flask app
+        run: |
+          python app/app.py &
+          sleep 10
+
       - name: Run tests
         run: |
           pytest tests/
